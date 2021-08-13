@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+    <resultMap id="userEntity" type="com.example.demo.entity.User">
+        <result column="user_seq" property="userSeq"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="user_name" property="userName"></result>
+    </resultMap>
+
+    <select id="queryAll" resultMap="userEntity">
+        select * from user
+    </select>
+
+    <select id="findByUserSeq" resultMap="userEntity">
+        select * from USER
+        <where>
+            <if test="userSeq != null and userSeq !='' ">
+                and user_seq = #{userSeq}
+            </if>
+        </where>
+    </select>
+</mapper>
